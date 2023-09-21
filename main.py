@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-
 def extract_book_info(book_url, name):
     product_page_url = "http://books.toscrape.com/catalogue/" + book_url
     url = product_page_url
@@ -48,12 +47,12 @@ def extract_book_info(book_url, name):
         header.append(list(info.keys())[0])
         description.append(list(info.values())[0])
 
-    with open(name + '.csv', 'a') as csv_file:
+    with open('data/donnee/' + name + '.csv', 'a') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         writer.writerow(header)
         writer.writerow(description)
 
-    with open('images/' + img_name + '.jpg', 'wb') as image_file:
+    with open('data/images/' + img_name + '.jpg', 'wb') as image_file:
         image_file.write(response.content)
 
 
